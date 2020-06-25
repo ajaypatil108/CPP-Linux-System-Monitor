@@ -2,7 +2,7 @@
 
 For the final project in the Object Oriented Programming Course of the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213), I built a Linux System Monitor quite similar to the htop application.  
 
-![System Monitor](images/monitor.png)
+![System Monitor](images/monitor.JPG)
 
 The source code provided was an empty ncursus display window. I extracted relevant data needed to compute memory and cpu usage and sorted processes based on those. Furthermore, all the fields in the system monitor were parsed, including uptime, pids, usernames, system name, kernal, total and running processes etc. OOP concepts of composition of classes and multi-level inheritance were used. 
 
