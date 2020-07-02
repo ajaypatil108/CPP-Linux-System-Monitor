@@ -211,7 +211,8 @@ string LinuxParser::Ram(int pid) {
     while (std::getline(stream, line)) {
       std::istringstream linestream(line);
       while (linestream >> key >> value) {
-        if (key == "VmSize:"){ 
+        if (key == "VmData:"){ 
+          // Using VmData instead of VmSize to compute utilization based on physical RAM size as opposed to virtual memory size
         	ram_util = to_string(value/1024);
           return ram_util;
         }
@@ -267,7 +268,7 @@ string LinuxParser::User(int pid) {
 
 long LinuxParser::UpTime(int pid){
   string value{};
-  long int uptime{0};
+  long int uptime{0}  ;
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
   if (stream.is_open()){
    	for (int i = 0; stream >> value ; i++){
