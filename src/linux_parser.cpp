@@ -31,6 +31,7 @@ string LinuxParser::OperatingSystem() {
       }
     }
   }
+  stream.close();
   return value;
 }
 
@@ -44,6 +45,7 @@ string LinuxParser::Kernel() {
     std::istringstream linestream(line);
     linestream >> os >> version >> kernel;
   }
+  stream.close();
   return kernel;
 }
 
@@ -68,6 +70,7 @@ float LinuxParser::MemoryUtilization() {
       }
     }
   }
+  stream.close();
   MemUtil = ((MemTotal - MemFree) / MemTotal);
   return MemUtil;
 }
@@ -83,6 +86,7 @@ long LinuxParser::UpTime() {
       linestream >> system_uptime;
     }
   }
+  stream.close();
   return system_uptime;
 }
 
@@ -102,6 +106,7 @@ int LinuxParser::TotalProcesses() {
       }
     }
   }
+  stream.close();
   return value;
 }
 
@@ -121,6 +126,7 @@ int LinuxParser::RunningProcesses() {
       }
     }
   }
+  stream.close();
   return value;
 }
 
@@ -167,6 +173,7 @@ if (stream.is_open()){
             }
         }
     }
+stream.close();
 utime = stol(all_values[13]);
 stime = stol(all_values[14]);
 cutime = stol(all_values[15]);
@@ -189,6 +196,7 @@ string LinuxParser::Command(int pid) {
     std::getline(stream, line);
     return line;
   }
+  stream.close();
   return "";
 }
   
@@ -210,6 +218,7 @@ string LinuxParser::Ram(int pid) {
       }
     }
   }
+  stream.close();
   return string("0");
 }
 
@@ -229,6 +238,7 @@ string LinuxParser::Uid(int pid) {
       }
     }
   }
+  stream.close();
   return string("0");
 }
   
@@ -250,6 +260,7 @@ string LinuxParser::User(int pid) {
       }
     }
   }
+  stream.close();
   return "0";
 }
 
@@ -266,5 +277,6 @@ long LinuxParser::UpTime(int pid){
        }
     }    
   }
+  stream.close();
   return uptime;
 }

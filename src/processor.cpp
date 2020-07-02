@@ -25,6 +25,7 @@ float Processor::Utilization() {
   cpu_utilization_ = (total - idle)/total;    
       }     
         }
-  }   
+  }
+  filestream.close();   
   return cpu_utilization_; 
 }
