@@ -7,12 +7,12 @@ using std::string;
 // Computation of system's processor utilization. *Not using jiffies & utilization functions as recommended in LinuxParser namespace
 
 float Processor::Utilization() {
-  string line;
-  string name;
+  string line{};
+  string name{};
   float a[10];
-  float idle;
-  float non_idle;
-  float total;
+  float idle{0};
+  float non_idle{0};
+  float total{0};
   std::ifstream filestream(LinuxParser::kProcDirectory + LinuxParser::kStatFilename);
   if (filestream.is_open()) {
   while (std::getline(filestream, line)) {

@@ -13,9 +13,9 @@ using std::vector;
 // SYSTEM DATA PARSING //
 
 string LinuxParser::OperatingSystem() {
-  string line;
-  string key;
-  string value;
+  string line{};
+  string key{};
+  string value{};
   std::ifstream stream(kOSPath);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -37,8 +37,8 @@ string LinuxParser::OperatingSystem() {
 
 
 string LinuxParser::Kernel() {
-  string os, version, kernel;
-  string line;
+  string os{}, version{}, kernel{};
+  string line{};
   std::ifstream stream(kProcDirectory + kVersionFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
@@ -51,12 +51,12 @@ string LinuxParser::Kernel() {
 
 
 float LinuxParser::MemoryUtilization() {
-  string line;
-  string key;
-  float value;
-  float MemTotal;
-  float MemFree;
-  float MemUtil;
+  string line{0};
+  string key{0};
+  float value{0};
+  float MemTotal{0};
+  float MemFree{0};
+  float MemUtil{0};
   std::ifstream stream(kProcDirectory + kMeminfoFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -77,8 +77,8 @@ float LinuxParser::MemoryUtilization() {
 
 
 long LinuxParser::UpTime() {
-  long system_uptime;
-  string line;
+  long system_uptime{0};
+  string line{};
   std::ifstream stream(kProcDirectory + kUptimeFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -92,9 +92,9 @@ long LinuxParser::UpTime() {
 
 
 int LinuxParser::TotalProcesses() {
-  string key;
-  int value;
-  string line;
+  string key{};
+  int value{0};
+  string line{};
   std::ifstream stream(kProcDirectory + kStatFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -112,9 +112,9 @@ int LinuxParser::TotalProcesses() {
 
 
 int LinuxParser::RunningProcesses() {
-  string key;
-  int value;
-  string line;
+  string key{};
+  int value{0};
+  string line{};
   std::ifstream stream(kProcDirectory + kStatFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -154,10 +154,10 @@ vector<int> LinuxParser::Pids() {
 }
 
 float LinuxParser::ProcessCpuUtilization(int pid){
-string line;
-string value;
+string line{};
+string value{};
 vector<string> all_values;
-long utime, stime, cutime, cstime, starttime;
+long utime{0}, stime{0}, cutime{0}, cstime{0}, starttime{0};
 // CPU time spent in user mode, measured in clock ticks
 // CPU time spent in kernel mode, measured in clock ticks
 // Waited-for children's CPU time spent in user code (in clock ticks)
@@ -190,7 +190,7 @@ return process_cpu_utilization;
 
 
 string LinuxParser::Command(int pid) {
-  string line;
+  string line{};
   std::ifstream stream(kProcDirectory + to_string(pid) + kCmdlineFilename);
   if(stream.is_open()){
     std::getline(stream, line);
@@ -202,10 +202,10 @@ string LinuxParser::Command(int pid) {
   
 
 string LinuxParser::Ram(int pid) { 
-  string line;
-  string key;
-  int value;
-  string ram_util;
+  string line{};
+  string key{};
+  int value{0};
+  string ram_util{};
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -224,9 +224,9 @@ string LinuxParser::Ram(int pid) {
 
 
 string LinuxParser::Uid(int pid) { 
-  string line;
-  string key;
-  int value;
+  string line{};
+  string key{};
+  int value{0};
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -244,10 +244,10 @@ string LinuxParser::Uid(int pid) {
   
 
 string LinuxParser::User(int pid) {
-  string line;
-  string key1;
-  string key2;
-  string value;
+  string line{};
+  string key1{};
+  string key2{};
+  string value{};
   std::ifstream stream(kPasswordPath);
   if (stream.is_open()) {
     while (std::getline(stream, line)) {
@@ -266,8 +266,8 @@ string LinuxParser::User(int pid) {
 
 
 long LinuxParser::UpTime(int pid){
-  string value;
-  long int uptime = 0;
+  string value{};
+  long int uptime{0};
   std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
   if (stream.is_open()){
    	for (int i = 0; stream >> value ; i++){
